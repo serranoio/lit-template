@@ -1,13 +1,7 @@
-export const productItems: string[] = [
+export const items: string[] = [
 	"Catalog",
 	"Create"
 ];
-
-export const companyItems: string[] = [
-	// "Docs",
-	// "Company"
-];
-
 
 
 export const dashedCase = (item: string): string => {
@@ -16,10 +10,8 @@ export const dashedCase = (item: string): string => {
 }
 
 
-
 export const routes: string[] = [
-	...productItems.map((item) => dashedCase(item)),
-	...companyItems.map((item) => dashedCase(item)),
+	...items.map((item) => dashedCase(item)),
 ]
 
-export const navSize: string = 70;
+export const navSize: number = 70;

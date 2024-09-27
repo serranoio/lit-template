@@ -4,7 +4,7 @@ import config from '../../twind.config'
 import install from '@twind/with-web-components'
 import { html, css } from 'lit';
 import "./nav-items-element"
-import { companyItems, navSize, productItems } from '../../model/meta';
+import { navSize } from '../../model/meta';
 import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/components/drawer/drawer.js';
 
 @customElement('nav-element')
@@ -14,7 +14,7 @@ export class NavElement extends LitElement {
 	sizeAdder = -5; 
 
 	@query('#mobile-menu')
-	drawer!: SLDrawer;
+	drawer!: any;
 
 	constructor() {
 		super();
@@ -29,51 +29,15 @@ export class NavElement extends LitElement {
 	}
 
 	logo() {
-			return html`<img src="/android/android-launchericon-192-192.png" class="h-[${navSize + this.sizeAdder}px] w-[${navSize + this.sizeAdder}px]"/>`
+			return html`<p>hello</p>`
 	}
 
 	render() {
 		return html`
 		<nav class="h-[${navSize}px] sm:px-4 px-2 py-2.5">
-			<div class='h-full bg-gray-100 backdrop-blur-lg opacity-80 flex items-center justify-between sm:px-8 rounded-full px-4'>
-				<a class="h3 text-gray-800 flex gap-2 items-center" href="/">
-					${this.logo()}
-					<h3>
-						Bookera
-					</h3>
-				</a>
-				
-
-				
-				<div class="hidden sm:block">
-					<nav-items-element
-					.navItems=${companyItems}></nav-items-element>	
-				</div>
-				<div class="hidden sm:block">
-					<nav-items-element
-						.navItems=${productItems}></nav-items-element>	
-					</div>
-					
-					<div class="sm:hidden">
-						<sl-button @click=${() => this.showDrawer()} label="Menu" size="medium" circle class="flex justify-center items-center">
-							<sl-icon name="list"></sl-icon>
-						</sl-button>
-					</div>
-					
-				</div>
+		<p>${this.logo()}</p>
 			</nav>
 			
-			<sl-drawer --size="100px" label="Menu" placement="start" id="mobile-menu">
-				<div @click=${() => this.hideDrawer()}>
-					<nav-items-element
-					vertical
-					.navItems=${companyItems}></nav-items-element>	
-					<nav-items-element
-					vertical
-					.navItems=${productItems}></nav-items-element>	
-				</div>
-					<sl-button slot="footer" variant="primary">Close</sl-button>
-	</sl-drawer>
 			`
 	}
 

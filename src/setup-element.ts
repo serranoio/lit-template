@@ -8,10 +8,7 @@ import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/compone
 import "./pages/main-element"
 import "./components/layout/layout-element"
 import { Router } from '@lit-labs/router';
-import { urlContext } from './components/layout/url-context';
 import { routes } from './model/meta';
-import "./pages/create-element";
-import {URLPattern} from "urlpattern-polyfill";
 // @ts-ignore
 globalThis.URLPattern = URLPattern
 // activate twind - must be called at least once
@@ -26,21 +23,12 @@ globalThis.URLPattern = URLPattern
 export class SetupElement extends LitElement {
   private _routes = new Router(this, [
     ...routes.map((item) => {
-
       let element = html``;
-
-      if (item === "create") {
-        element = html`<create-element></create-element>`;
-      }
-    
 
       return {pattern: new URLPattern({pathname: `/${item}`}), render: () => html`${element}`}
   }),
   {pattern: new URLPattern({pathname: `/`}), render: () => html`<main-element></main-element>`},
   ]);
-
-  @provide({context: urlContext})
-  url = window.location.pathname;
   
   
   render() {
